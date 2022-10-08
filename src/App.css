@@ -1,0 +1,4 @@
+.bg_img0{
+    background-image: linear-gradient(260deg, #0000009d, #00000038), url('./assets/gradient.svg');
+    background-size: cover;
+}

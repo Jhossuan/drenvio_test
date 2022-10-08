@@ -9,14 +9,33 @@ const Perfil = () => {
 
     const [userData, setUserData] = useState([])
     const [loading, setLoading] = useState(false)
+    const [saved, setSaved] = useState(false)
     const dispatch = useDispatch()
 
     const getUser = async() => {
-        setLoading(true)
-        const res = await axios.get(`https://randomuser.me/api`)
-        setUserData(res.data.results)
-        dispatch(saveData(res.data.results))
-        setLoading(false)
+        const lsData = localStorage.getItem("saved")
+        if(!lsData){
+            setLoading(true)
+            const res = await axios.get(`https://randomuser.me/api`)
+            setUserData(res.data.results)
+            dispatch(saveData(res.data.results))
+            setLoading(false)
+            return
+        }
+        setUserData(JSON.parse(localStorage.getItem("usuario")))
+        setSaved(lsData)
+    }
+
+    const saveLocalData = () => {
+        setSaved(!saved)
+        if(saved === false){
+            // console.log("Saved es: " + saved);
+            localStorage.setItem("saved", saved)
+            localStorage.setItem("usuario", JSON.stringify(userData))
+            return
+        }
+        localStorage.clear()
+        // console.log("Saved es: " + saved + " afuera del if");
     }
 
     useEffect(()=> {
@@ -30,7 +49,7 @@ const Perfil = () => {
                 const {picture, name, email, gender, registered, location, phone, cell, dob} = user;
                 return (
                     <div key={index+1} className='xl:w-2/3 md:w-9/12 sm:w-11/12 w-full'>
-                    <User picture={picture} name={name} email={email} gender={gender} registered={registered} location={location} getUser={getUser} phone={phone} />
+                    <User picture={picture} name={name} email={email} gender={gender} registered={registered} location={location} getUser={getUser} phone={phone} saved={saved} setSaved={setSaved} saveLocalData={saveLocalData} />
                     <UserInfo phone={phone} email={email} cell={cell} dob={dob} />
                     </div>
                 )

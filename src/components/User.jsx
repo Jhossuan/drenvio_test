@@ -1,8 +1,10 @@
 import { HiOutlineMail, HiOutlineLocationMarker } from "react-icons/hi"
-import { AiOutlineMan, AiOutlineWoman, AiOutlineCalendar, AiOutlinePhone } from 'react-icons/ai'
+import { AiOutlineMan, AiOutlineWoman, AiOutlineCalendar } from 'react-icons/ai'
+import { FaBookmark, FaRegBookmark } from 'react-icons/fa'
 import Button from "../layouts/Button";
 
-const User = ({picture, name, email, gender, registered, location, getUser, phone}) => {
+const User = ({picture, name, email, gender, registered, location, getUser, saved, setSaved, saveLocalData}) => {
+
   return (
     <div className="perfil w-full bg-gray-800 sm:rounded-md h-96 text-gray-100">
         <div className="bg-gray-900 text-gray-300 h-3/6 sm:rounded-t-md p-4 flex flex-col md:justify-end bg_img0 text-right border-2 border-gray-800">
@@ -20,8 +22,13 @@ const User = ({picture, name, email, gender, registered, location, getUser, phon
             <small className="text-gray-200 sm:mt-[2vh] mt-9 flex items-center"><AiOutlineCalendar className="mr-1" />{registered.age > 0 ? `Se unió hace ${registered.age} ${registered.age === 1 ? 'año' : 'años'}` : 'Se unió hace poco'}</small>
         </div>
         <div className="w-full flex items-center p-3 justify-end mt-[-3rem]">
-            <div className="p-2 rounded-full mr-1 shadow-lg bg-blue-500 hover:bg-blue-600 text-white cursor-pointer" title={phone}>
-                <AiOutlinePhone className="text-xl" />
+            <div className="p-2 rounded-full mr-1 shadow-lg bg-blue-500 hover:bg-blue-600 text-white cursor-pointer" title="Añadir a LocalStorage" onClick={saveLocalData}>
+                {
+                    saved ? 
+                    <FaBookmark className="text-xl" />
+                    :
+                    <FaRegBookmark className="text-xl" />
+                }
             </div>
             <Button label='Conocer más' onClick={getUser} />
         </div>

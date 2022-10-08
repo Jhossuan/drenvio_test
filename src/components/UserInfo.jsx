@@ -23,7 +23,7 @@ const UserInfo = ({phone, email, cell, dob}) => {
         active &&
         <div className="grid md:grid-cols-2 grid-cols-1 gap-2">
 
-        <div className="my-5 w-full bg-gray-800 sm:rounded-md  h-full">
+        <div className="my-3 w-full bg-gray-800 sm:rounded-md  h-full">
 
           <div className="flex flex-col mt-3 px-8 py-4">
             <p className='text-xl flex items-center mb-3 font-semibold'><MdOutlinePermContactCalendar className='mr-2 text-white' />Contacto</p>
@@ -35,7 +35,7 @@ const UserInfo = ({phone, email, cell, dob}) => {
 
         </div>
 
-        <div className="my-5 w-full  bg-gray-800 sm:rounded-md h-full">
+        <div className="my-3 w-full  bg-gray-800 sm:rounded-md h-full">
         <div className="flex flex-col mt-3 px-8 py-4">
             <p className='text-xl flex items-center mb-3 font-semibold'><MdOutlineVerifiedUser className='mr-2 text-white' />Información personal</p>
             <span className='border border-gray-500 w-full'/>

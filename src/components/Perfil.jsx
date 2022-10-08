@@ -22,7 +22,9 @@ const Perfil = () => {
             setLoading(false)
             return
         }
-        setUserData(JSON.parse(localStorage.getItem("usuario")))
+        let data = JSON.parse(localStorage.getItem("usuario"))
+        setUserData(data)
+        dispatch(saveData(data))
         setSaved(lsData)
     }
 
